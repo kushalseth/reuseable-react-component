@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>An Unordered HTML List</h2>
+
+    <ul id="list">
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+
+    <h2>An Ordered HTML List</h2>
+
+    <ol>
+      <li id="delete">Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ol>
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    debugger;
+    document
+      .getElementById("delete")
+      .addEventListener("click", function deletes(event) {
+        debugger;
+        var parent = document.getElementById("list");
+
+        var child = parent.getElementsByTagName("li")[0];
+
+        console.log(child);
+
+        parent.removeChild(child); //deletes a pair of my li inputs
+      });
+  });
+</script>

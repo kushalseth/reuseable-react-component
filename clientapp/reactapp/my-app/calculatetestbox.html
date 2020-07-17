@@ -1,0 +1,67 @@
+<html lang="en">
+  <head>
+    <title></title>
+    <script
+      src="http://code.jquery.com/jquery-latest.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    ></script>
+  </head>
+  <body>
+    <script>
+      function Sum(list) {
+        var sum = 0;
+        $.each(list, function (index, object) {
+          if ($(object).val() != "") {
+            sum = sum + parseInt($(object).val());
+          }
+        });
+        return sum;
+      }
+
+      $(document).on("keyup", "input.expenses", function () {
+        $expenses_A = Sum($(this).parents("table").find(".rowA .expenses"));
+        $expenses_B = Sum($(this).parents("table").find(".rowB .expenses"));
+        $expenses_C = Sum($(this).parents("table").find(".rowC .expenses"));
+        $expenseTotal = $(this).parents("table").find("#expenses_sum");
+        $expenseTotal.val(
+          ($expenses_B * $expenses_C) - ($expenses_A * $expenses_C)
+        );
+      });
+    </script>
+
+    <table border="1">
+      <tr>
+        <th>No</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>Total</th>
+      </tr>
+      <tr class="rowA">
+        <td>1</td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+        <td>
+          <input id="expenses_sum" />
+        </td>
+      </tr>
+      <tr class="rowB">
+        <td>2</td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+      </tr>
+      <tr class="rowC">
+        <td>3</td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+        <td><input class="expenses" /></td>
+      </tr>
+    </table>
+  </body>
+</html>

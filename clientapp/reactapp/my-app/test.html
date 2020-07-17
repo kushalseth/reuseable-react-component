@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<form>
+  <div class="selected">
+    <select class="form-control" id="select_one" onchange="enableButton()">
+      <option value="received">received</option>
+      <option value="complete">complete</option>
+    </select>
+    <select class="form-control" id="select_two" onchange="enableButton()">
+      <option value="received">received</option>
+      <option value="complete">complete</option>
+    </select>
+  </div>
+</form>
+
+<button id="btn_completed" disabled>Completed</button>
+
+</body>
+<script>
+function enableButton() {
+debugger;
+  var all_statuses = document.body.querySelectorAll(".selected > .form-control");
+  var option_two = "complete";
+
+  var isdisabled = false;
+  for (var i = 0; i < all_statuses.length; i++) {
+    console.log(i + " This will work")
+    if (all_statuses[i].value != option_two) {
+      isdisabled = true;
+      break;
+    } 
+  }
+
+  if(isdisabled) {
+	document.getElementById("btn_completed").disabled = true;
+  }
+  else {
+document.getElementById("btn_completed").disabled = false;
+	} 
+
+}
+
+$(document).ready(enableButton);
+</script>
+</html>
