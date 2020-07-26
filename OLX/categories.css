@@ -1,0 +1,23 @@
+#firstMenu {
+    border-radius: 25px;
+
+	border-style: solid;
+    border-color: #0000ff;
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 28px; 
+    width: 100%;
+    height: 40px;    
+}
+
+#secondMenu {
+    border-radius: 25px;
+
+	border-style: solid;
+    border-color: red;
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 28px; 
+    width: 100%;
+    height: 40px;    
+}
