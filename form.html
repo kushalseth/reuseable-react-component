@@ -1,147 +1,182 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tribute Page</title>
-  </head>
+<head>
+	<title>Tribute Page</title>
+	<link rel="stylesheet" type="text/css" href="styleTributePage.css"/>
+  <!--<script type="text/javascript" src="TributePage.js"></script>-->
 
-  <body>
-    <header><h1>Words</h1></header>
 
-    <hr />
+</head>
 
-    <main>
-      <section>
-        <h1>Forms</h1>
-        <article>
-          <header>
-            <p>Form Maker</p>
-          </header>
-          <div class="container">
-            <h2>Shopping List</h2>
-            <form id="myForm" onsubmit="checkBlank()">
-              <!--<div id="errorMessage" class="error">Please enter a task</div> -->
-              <input
-                id="inputItemList"
-                type="text"
-                placeholder="Enter your item here"
-                autocomplete="off"
-              />
-              <span id="errorbox" class="error"></span>
+<body>
+	<header><h1>Words</h1></header>
+	<nav>
+		<ul>
+			<li><a >NAME HERE</a></li>
+			<li><a></a>jiji</li>
+	</nav>
 
-              <button
-                id="addItembutton"
-                type="button"
-                onclick="validateAndAdd()"
-              >
-                Add To List
-              </button>
+<hr>
+<!--
+<main>
+	<section>
+		<h1>Buttons</h1>
+		<article>
+			<header>
+				<p>The Art Of Buttons</p>
+			</header>
+			<div>
+				<button id="msgButton" onclick="sayHello()">Get Message!</button>
+				
+				<button id="clickButton" onclick="button()">Click Me!</button>
+				
+				<button id="resetButton" onclick="reset()">Reset Button</button>
+			</div>
+		</article>
+	</section>
+</main>
+<aside>
+	<p>title for a separate aside here</p>
+</aside>-->
+<main>	
+	<section>
+		<h1>Forms</h1>
+		<article>
+			<header>
+				<p>Form Maker</p>
+		 	</header>
+			<div class="container">
+				<h2>Shopping List</h2>
+				<form id="myForm">
+				
+					<input id="inputItemList" 
+							type="text" 
+							placeholder="Enter your item here" 
+							autocomplete="off"/>
 
-              <button id="resetItembutton" type="button" onclick="btnReset()">
-                Reset Text Field
-              </button>
+					<button id="addItemButton"
+							type="button" 
+							onclick ="addItem()">
+							Add To List
+					</button>
+					
+					<span id="errorbox" 
+						  class="error">
+					</span>
 
-              <button
-                id="removeItembutton"
-                type="button"
-                onclick="removeItem()"
-              >
-                Remove Recent Items
-              </button>
-            </form>
+					<button id="resetItemButton"
+							type="button" 
+							onclick="btnReset()">
+							Reset Text Field
+					</button>
 
-            <h3>Items</h3>
-            <ul class="establishedList">
-              <!--list that you don't want to touch-->
-              <li class="establishedItems">Bread</li>
-              <li class="establishedItems">Milk</li>
-              <li class="establishedItems">Cheese</li>
-              <li class="establishedItems">Juice</li>
-            </ul>
-            <ul id="variableList">
-              <!--the new items list-->
-            </ul>
-          </div>
-        </article>
-      </section>
-    </main>
-    <hr />
-    <script>
-      //don't pass parameters
-      //only put parts inthe function that matter
+					<button id="removeItemButton"
+							type="button" 
+							onclick="removeItem()">
+							Remove Recent Items
+					</button>
+				</form>
 
-      //Adds the item to the item list
-      function addItem() {
-        var ul = document.getElementById("variableList");
-        var li = document.createElement("li");
-        var inputItemList = document.getElementById("inputItemList");
-        //var errorMessage = document.getElementById("error");
+				<h3>Items</h3>
+				<ul class="establishedList"> <!--list that you don't want to touch-->
+					<li class="establishedItems">Bread</li>
+			        <li class="establishedItems">Milk</li>
+			        <li class="establishedItems"> Cheese</li>
+					<li class="establishedItems"> Jice</li>
+				</ul>
+		        
+		        <ul id="variableList"> <!--the new items list-->
+				</ul>
+			</div>
+		</article>
+	</section>
+</main>
+<hr>
 
-        li.setAttribute("id", inputItemList.value);
-        li.appendChild(document.createTextNode(inputItemList.value));
-        ul.appendChild(li);
+<aside>
+	<p>title for a separate aside here</p>
+</aside>
+<footer>
+	Copyright
+</footer>
 
-        //to clear after the text was written
-        document.getElementById("inputItemList").value = "";
-      }
+<script>
+  //don't pass parameters
+//only put parts inthe function that matter
 
-      function checkBlank() {
-        if (document.GetElementById("inputItemList").value == "") {
-          alert("You must write something!");
-          document.GetElementById("inputItemList").style.borderColor = "yellow";
-        } else {
-          alert("the message didn't work");
+//Adds the item to the item list
+function addItem() {
+var inputItemList = document.getElementById("inputItemList");
+if (
+  inputItemList &&
+  inputItemList.value &&
+  inputItemList.value.trim().length > 0
+) {
+  document.getElementById("errorbox").innerText = "";
+  
+  var ul = document.getElementById("variableList");
+  var li = document.createElement("li");
+  var inputItemList = document.getElementById("inputItemList");
+ 
+  li.setAttribute("id", inputItemList.value);
+  li.appendChild(document.createTextNode(inputItemList.value));
+  ul.appendChild(li);
+} 
+else {
+  document.getElementById("errorbox").innerText = "text field is empty";
+}
+}
 
-          document.getElementById("inputItemList").appendChild(li);
-        }
-      }
-
-      /*the default style is set to none znd the block is 
-going tot show the error message
-errorMessage:function() {
-    this. errorMessage.style.display = "block";
-}*/
-
-      //Removes the item from the item list
-      function removeItem() {
-        var ul = document.getElementById("variableList");
-        //ul.removeChild(ul.lastElementChild); //goes through the list and removes the last child from the list
-        if (ul.firstChild) {
-          ul.removeChild(ul.lastChild);
-        } else {
-          alert("There are no more items to remove");
-        }
-      }
-
-      //Reset Button clears the item that was written in the text field.
-      function btnReset() {
-        document.getElementById("inputItemList").value = "";
-      }
-
-      //EventListener of the Enter Key
-      var items = document.getElementById("variableList");
-
-      document
-        .getElementById("inputItemList")
-        .addEventListener("keypress", function (event) {
+//EventListener of the Enter Key
+var inputItemList2 = document.getElementById("inputItemList");
+console.log("out inputItemList", inputItemList2);
+inputItemList2.addEventListener("keypress", function(event) {
+  console.log("inside inputItemList", inputItemList2);
+ 
           document.getElementById("errorbox").innerText = "";
-          if (event.keyCode === 13) {
-            event.preventDefault();
-            validateAndAdd(event.currentTarget.value);
+      if (event.keyCode === 13) {
+          event.preventDefault();
+          if (
+              event.currentTarget.value && 
+              event.currentTarget.value.length > 0
+          ) {
+              addItem();
+          } 
+          else {
+            document.getElementById("errorbox").innerText = "text field is empty";
           }
-        });
-
-      function validateAndAdd(value) {
-        
-        var value = value
-          ? value
-          : document.getElementById("inputItemList").value;
-        if (value && value.trim().length > 0) {
-          document.getElementById("errorbox").innerText = "";
-          addItem();
-        } else {
-          document.getElementById("errorbox").innerText = "text field is empty";
-        }
+          return false;
       }
-    </script>
-  </body>
+  });
+
+//Removes the item from the item list
+function removeItem() {
+  var ul = document.getElementById("variableList");
+  //ul.removeChild(ul.lastElementChild); //goes through the list and removes the last child from the list
+  if (ul.firstChild) {
+      ul.removeChild(ul.lastChild);
+  }
+  else {
+      alert("There are no more items to remove");
+  }
+}
+
+
+//Reset Button clears the item that was written in the text field.
+function btnReset(){
+  document.getElementById("inputItemList").value="";
+}
+
+
+
+
+
+
+</script>
+
+</body>
 </html>
+
+
+
+
